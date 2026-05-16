@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>바이브 코딩 실전 가이드</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #0f172a;
+      --card: #111827;
+      --text: #f8fafc;
+      --sub: #cbd5e1;
+      --primary: #6366f1;
+      --secondary: #8b5cf6;
+      --border: rgba(255,255,255,0.08);
+    }
+
+    body {
+      font-family: "Pretendard", sans-serif;
+      background: linear-gradient(to bottom, #020617, #0f172a);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    a {
+      color: #a5b4fc;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1100px, 92%);
+      margin: auto;
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 80px 0;
+    }
+
+    .hero-content {
+      max-width: 800px;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 8px 16px;
+      background: rgba(99,102,241,0.15);
+      border: 1px solid rgba(99,102,241,0.3);
+      border-radius: 999px;
+      color: #c7d2fe;
+      margin-bottom: 24px;
+      font-size: 14px;
+    }
+
+    h1 {
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      line-height: 1.1;
+      margin-bottom: 24px;
+    }
+
+    .gradient {
+      background: linear-gradient(to right, #818cf8, #c084fc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+      color: var(--sub);
+      font-size: 1.2rem;
+      margin-bottom: 32px;
+    }
+
+    .btns {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 14px 24px;
+      border-radius: 14px;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+
+    .btn-primary {
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      color: white;
+    }
+
+    .btn-secondary {
+      border: 1px solid var(--border);
+      color: white;
+    }
+
+    section {
+      padding: 80px 0;
+    }
+
+    h2 {
+      font-size: 2.4rem;
+      margin-bottom: 24px;
+    }
+
+    .section-desc {
+      color: var(--sub);
+      margin-bottom: 48px;
+    }
+
+    .grid {
+      display: grid;
+      gap: 24px;
+    }
+
+    .grid-3 {
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+
+    .card {
+      background: rgba(17,24,39,0.7);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 28px;
+      backdrop-filter: blur(12px);
+    }
+
+    .card h3 {
+      margin-bottom: 16px;
+      font-size: 1.3rem;
+    }
+
+    .card p {
+      color: var(--sub);
+    }
+
+    .step {
+      display: flex;
+      gap: 24px;
+      margin-bottom: 32px;
+      align-items: flex-start;
+    }
+
+    .step-number {
+      min-width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+
+    .step-content {
+      flex: 1;
+    }
+
+    .step-content h3 {
+      margin-bottom: 12px;
+      font-size: 1.5rem;
+    }
+
+    .step-content p {
+      color: var(--sub);
+    }
+
+    pre {
+      background: #020617;
+      padding: 20px;
+      border-radius: 16px;
+      overflow-x: auto;
+      margin-top: 20px;
+      border: 1px solid var(--border);
+      color: #e2e8f0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      overflow: hidden;
+      border-radius: 20px;
+      margin-top: 32px;
+    }
+
+    th, td {
+      padding: 18px;
+      text-align: left;
+    }
+
+    th {
+      background: rgba(99,102,241,0.15);
+    }
+
+    tr {
+      background: rgba(17,24,39,0.7);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .quote {
+      border-left: 4px solid var(--primary);
+      padding-left: 20px;
+      color: #dbeafe;
+      margin-top: 20px;
+    }
+
+    .cta {
+      text-align: center;
+      padding: 100px 0;
+    }
+
+    .cta h2 {
+      margin-bottom: 20px;
+    }
+
+    .footer {
+      padding: 40px 0;
+      text-align: center;
+      color: #94a3b8;
+      border-top: 1px solid var(--border);
+    }
+
+    @media (max-width: 768px) {
+      .step {
+        flex-direction: column;
+      }
+
+      table {
+        display: block;
+        overflow-x: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <section class="hero">
+      <div class="hero-content">
+        <div class="badge">2026 Vibe Coding Playbook</div>
+
+        <h1>
+          바이브 코딩 실전 가이드<br>
+          <span class="gradient">30분 만에 앱 만들기</span>
+        </h1>
+
+        <p>
+          코딩을 몰라도 괜찮다.
+          이제는 AI와 대화하듯 앱을 만드는 시대다.
+        </p>
+
+        <div class="btns">
+          <a href="#guide" class="btn btn-primary">가이드 시작하기</a>
+          <a href="https://nextplatform.net/vibecoding-magic-you-can-build-apps-in-thirty-minutes/"
+             class="btn btn-secondary"
+             target="_blank">
+             원문 보기
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>왜 바이브코딩인가?</h2>
+      <p class="section-desc">
+        AI와 협업하며 아이디어를 즉시 프로토타입으로 만드는 새로운 개발 방식
+      </p>
+
+      <div class="grid grid-3">
+        <div class="card">
+          <h3>⚡ 빠른 검증</h3>
+          <p>
+            아이디어 → 프로토타입까지 몇 주가 아니라 몇 분.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>🤝 개발 소통 강화</h3>
+          <p>
+            직접 만들어보며 개발 흐름을 이해하게 된다.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>🧠 AI 활용 능력</h3>
+          <p>
+            단순 문서 요약을 넘어 실제 서비스를 만드는 경험.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="guide">
+      <h2>30분 실전 따라하기</h2>
+
+      <div class="step">
+        <div class="step-number">1</div>
+
+        <div class="step-content">
+          <h3>아이디어 정리</h3>
+
+          <p>
+            목적, 사용자, 핵심 기능, 참고 UI를 AI가 이해할 수 있게 설명한다.
+          </p>
+
+<pre>[목적] 무엇을 위한 앱인가?
+[사용자] 누가 사용하는가?
+[핵심 기능] 꼭 필요한 기능 3개
+[참고 UI] 어떤 앱 느낌인가?</pre>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-number">2</div>
+
+        <div class="step-content">
+          <h3>Claude에서 코드 생성</h3>
+
+          <p>
+            프롬프트를 입력하면 React 기반 앱 코드를 자동 생성한다.
+          </p>
+
+          <div class="quote">
+            “코드 전체를 하나의 파일로 만들어줘”를 추가하면 편하다.
+          </div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-number">3</div>
+
+        <div class="step-content">
+          <h3>Bolt.new에서 실행</h3>
+
+          <p>
+            생성된 코드를 붙여넣으면 실시간으로 앱이 실행된다.
+          </p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-number">4</div>
+
+        <div class="step-content">
+          <h3>반복 수정</h3>
+
+          <p>
+            원하는 변경사항을 자연어로 다시 설명하며 앱을 개선한다.
+          </p>
+
+<pre>버튼 색상을 파란색으로 바꿔줘.
+완료율을 상단에 표시해줘.
+팀원 필터 기능을 추가해줘.</pre>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-number">5</div>
+
+        <div class="step-content">
+          <h3>배포 및 공유</h3>
+
+          <p>
+            생성된 앱을 URL로 배포하고 팀원과 바로 공유한다.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>추천 도구 비교</h2>
+
+      <table>
+        <thead>
+          <tr>
+            <th>도구</th>
+            <th>특징</th>
+            <th>추천 대상</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td>Claude</td>
+            <td>강력한 코드 생성</td>
+            <td>기획자 / 입문자</td>
+          </tr>
+
+          <tr>
+            <td>Bolt.new</td>
+            <td>즉시 실행 & 배포</td>
+            <td>빠른 MVP 제작</td>
+          </tr>
+
+          <tr>
+            <td>v0.dev</td>
+            <td>세련된 UI 생성</td>
+            <td>서비스 개발</td>
+          </tr>
+
+          <tr>
+            <td>Replit</td>
+            <td>협업 환경 제공</td>
+            <td>팀 프로젝트</td>
+          </tr>
+
+          <tr>
+            <td>Cursor</td>
+            <td>AI 코드 에디터</td>
+            <td>개발 경험자</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>현실적인 한계</h2>
+
+      <div class="grid grid-3">
+
+        <div class="card">
+          <h3>🔴 어려운 분야</h3>
+          <p>
+            금융, 의료, 대규모 트래픽 서비스 같은 복잡한 시스템
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>🟡 잘 맞는 분야</h3>
+          <p>
+            MVP, 내부 툴, 대시보드, 계산기, 체크리스트
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>💡 핵심 가치</h3>
+          <p>
+            완제품 제작보다 빠른 검증과 실험에 강하다.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <section>
+      <h2>기획자를 위한 프롬프트 공식</h2>
+
+<pre>[역할] 너는 숙련된 프론트엔드 개발자야.
+[목표] 업무 체크리스트 앱을 만들어줘.
+[기술] React + Tailwind CSS 사용
+[UX] Notion 스타일의 깔끔한 UI
+[조건] 파일 하나로 실행 가능하게</pre>
+
+      <div class="quote">
+        중요한 건 프로그래밍 문법이 아니라,
+        AI가 이해할 수 있게 설명하는 능력이다.
+      </div>
+    </section>
+
+    <section class="cta">
+      <h2>오늘 30분만 투자해보세요</h2>
+
+      <p class="section-desc">
+        첫 앱이 완벽하지 않아도 괜찮습니다.<br>
+        중요한 건 아이디어를 실제로 움직이게 만드는 경험입니다.
+      </p>
+
+      <div class="btns" style="justify-content:center;">
+        <a href="https://nextplatform.net/vibecoding-magic-you-can-build-apps-in-thirty-minutes/"
+           class="btn btn-primary"
+           target="_blank">
+           원문 읽기
+        </a>
+      </div>
+    </section>
+
+    <div class="footer">
+      Inspired by NextPlatform Vibe Coding Guide
+    </div>
+
+  </div>
+
+</body>
+</html>
