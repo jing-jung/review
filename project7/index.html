@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>초보자용 날씨 웹앱</title>
+  <!-- CSS 파일 연결 -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-container">
+    
+    <!-- 상단: API Key 입력 및 버튼 -->
+    <div id="controls" class="controls">
+      <input type="text" id="apiKeyInput" placeholder="OpenWeather API Key 입력">
+      <button id="getWeatherBtn">날씨 가져오기</button>
+    </div>
+
+    <!-- 로딩 및 에러 메시지 영역 -->
+    <div id="loadingMessage" class="message hidden">날씨 정보를 불러오는 중입니다...</div>
+    <div id="errorMessage" class="message error hidden"></div>
+    
+    <!-- 실제 날씨 데이터가 들어갈 2단 레이아웃 영역 (초기에는 숨김) -->
+    <div id="weatherData" class="weather-layout hidden">
+      
+      <!-- 좌측 열: 기본 날씨 정보 (아이콘, 온도, 지역) -->
+      <div class="left-column">
+        <h2 id="cityName">도시 이름</h2>
+        <img id="weatherIcon" src="" alt="날씨 아이콘" class="weather-icon">
+        <div class="temperature">
+          <span id="temperatureValue">0</span>°C
+        </div>
+        <div id="weatherDescription" class="description">날씨 설명</div>
+      </div>
+
+      <!-- 우측 열: 상세 날씨 정보 (체감온도, 습도, 풍속) -->
+      <div class="right-column">
+        <div class="details">
+          
+          <div class="detail-item">
+            <span class="detail-label">체감 온도</span>
+            <span class="detail-value"><span id="feelsLike">0</span>°C</span>
+          </div>
+          
+          <div class="detail-item">
+            <span class="detail-label">습도</span>
+            <span class="detail-value"><span id="humidity">0</span>%</span>
+          </div>
+          
+          <div class="detail-item">
+            <span class="detail-label">풍속</span>
+            <span class="detail-value"><span id="windSpeed">0</span> m/s</span>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- JavaScript 파일 연결 -->
+  <script src="script.js"></script>
+</body>
+</html>

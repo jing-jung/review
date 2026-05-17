@@ -1,0 +1,174 @@
+/* 기본 마진/패딩 초기화 및 박스 사이징 설정 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* 전체 페이지 배경 (salmon) 및 폰트 설정 */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: salmon; /* 요청된 배경 색상 */
+  display: flex;
+  justify-content: center; /* 가로 중앙 정렬 */
+  align-items: center;     /* 세로 중앙 정렬 */
+  min-height: 100vh;       /* 화면 전체 높이 사용 */
+}
+
+/* 메인 웹앱 컨테이너 (640x400, 다크 테마 적용) */
+.app-container {
+  width: 640px;            /* 고정 가로 크기 */
+  height: 400px;           /* 고정 세로 크기 */
+  background-color: #1e1e1e; /* 다크테마 배경 */
+  color: #ffffff;          /* 텍스트 시인성을 위한 흰색 */
+  padding: 20px 30px;
+  border-radius: 20px;     /* 둥근 모서리 */
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4); /* 깊이감 있는 그림자 */
+  display: flex;
+  flex-direction: column;
+}
+
+/* 상단 컨트롤 영역 (입력창 및 버튼) */
+.controls {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  height: 45px;
+}
+
+.controls input {
+  flex: 1;
+  padding: 10px 15px;
+  border: 1px solid #444;
+  background-color: #2c2c2c;
+  color: #fff;
+  border-radius: 10px;
+  font-size: 14px;
+}
+
+.controls input:focus {
+  outline: none;
+  border-color: #3498db;
+}
+
+.controls button {
+  padding: 0 20px;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.controls button:hover {
+  background-color: #2980b9;
+}
+
+.controls button:active {
+  transform: scale(0.98);
+}
+
+/* 메시지 텍스트 영역 */
+.message {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  color: #aaa;
+}
+
+.error {
+  color: #ff6b6b; /* 에러 메시지는 눈에 띄는 빨간색 계열 */
+  font-weight: bold;
+}
+
+/* 2단 레이아웃을 위한 부모 컨테이너 */
+.weather-layout {
+  display: flex;
+  flex-direction: row; /* 가로 방향 배치 */
+  flex: 1;             /* 남은 공간 모두 채우기 */
+  height: 100%;
+}
+
+/* ---------------- 좌측 열 (기본 날씨 정보) ---------------- */
+.left-column {
+  flex: 1.2; /* 우측열보다 약간 넓게 설정 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-right: 1px solid #444; /* 좌/우 구분선 */
+  padding-right: 20px;
+}
+
+#cityName {
+  font-size: 26px;
+  font-weight: 600;
+  margin-bottom: 5px;
+  color: #e0e0e0;
+}
+
+/* 날씨 아이콘 시인성 개선 */
+.weather-icon {
+  width: 130px;
+  height: 130px;
+  object-fit: contain;
+  /* 어두운 배경에서 아이콘이 잘 보이도록 하얀색 테두리빛 추가 */
+  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.2)); 
+}
+
+.temperature {
+  font-size: 48px;
+  font-weight: bold;
+  color: #ff9f43; /* 온도 강조를 위한 따뜻한 오렌지 계열 색상 */
+  margin: 5px 0;
+}
+
+.description {
+  font-size: 16px;
+  color: #bbb;
+}
+
+/* ---------------- 우측 열 (상세 날씨 정보) ---------------- */
+.right-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 30px;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* 항목 간 간격 */
+}
+
+.detail-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #2c2c2c; /* 다크테마 내의 카드 색상 */
+  padding: 15px 20px;
+  border-radius: 12px;
+}
+
+.detail-label {
+  font-size: 15px;
+  color: #bbb;
+}
+
+.detail-value {
+  font-size: 18px;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+/* 숨김 처리용 클래스 */
+.hidden {
+  display: none !important;
+}
