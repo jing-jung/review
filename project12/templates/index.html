@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AutoML 데이터 분석 대시보드</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <span class="brand-icon">◈</span>
+        <div>
+          <h1>AutoML Studio</h1>
+          <p>CSV 업로드 → 자동 샘플링·모델 선택·시각화</p>
+        </div>
+      </div>
+
+      <section class="upload-panel">
+        <label class="upload-zone" id="dropZone" for="csvInput">
+          <input type="file" id="csvInput" accept=".csv" hidden />
+          <div class="upload-icon">↑</div>
+          <strong>CSV 파일 업로드</strong>
+          <span>드래그하거나 클릭 (예: churn.csv)</span>
+        </label>
+        <button type="button" class="btn-primary" id="analyzeBtn" disabled>분석 시작</button>
+        <p class="file-name" id="fileName">선택된 파일 없음</p>
+      </section>
+
+      <nav class="nav-links">
+        <a href="#overview">개요</a>
+        <a href="#stats">컬럼 통계</a>
+        <a href="#heatmap">상관관계</a>
+        <a href="#importance">피처 중요도</a>
+        <a href="#performance">모델 성능</a>
+        <a href="#predictions">예측 샘플</a>
+      </nav>
+    </aside>
+
+    <main class="main-content">
+      <header class="page-header">
+        <h2>데이터 분석 대시보드</h2>
+        <p id="statusText">CSV를 업로드하면 100개 인스턴스를 샘플링하고 최적 모델을 자동 선택합니다.</p>
+      </header>
+
+      <div id="loading" class="loading hidden">
+        <div class="spinner"></div>
+        <p>데이터 구조 분석 및 모델 학습 중…</p>
+      </div>
+
+      <div id="errorBox" class="error-box hidden"></div>
+
+      <section id="dashboard" class="dashboard hidden">
+        <section id="overview" class="panel">
+          <h3>분석 개요</h3>
+          <div class="kpi-grid" id="kpiGrid"></div>
+          <div class="model-banner" id="modelBanner"></div>
+        </section>
+
+        <section id="stats" class="panel">
+          <h3>컬럼 통계</h3>
+          <div class="table-wrap">
+            <table class="data-table" id="statsTable">
+              <thead>
+                <tr>
+                  <th>컬럼</th>
+                  <th>타입</th>
+                  <th>개수</th>
+                  <th>결측%</th>
+                  <th>고유값</th>
+                  <th>평균</th>
+                  <th>표준편차</th>
+                  <th>최소</th>
+                  <th>최대</th>
+                  <th>주요 값</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section id="heatmap" class="panel">
+          <h3>상관관계 히트맵</h3>
+          <div id="heatmapChart" class="chart-box"></div>
+        </section>
+
+        <section id="importance" class="panel">
+          <h3>피처 중요도</h3>
+          <div id="importanceChart" class="chart-box"></div>
+        </section>
+
+        <section id="performance" class="panel">
+          <h3>모델 성능 리포트</h3>
+          <div class="perf-grid">
+            <div id="cvChart" class="chart-box half"></div>
+            <div id="metricsCards" class="metrics-cards"></div>
+            <div id="confusionChart" class="chart-box half"></div>
+            <div id="reportTable" class="table-wrap full"></div>
+          </div>
+        </section>
+
+        <section id="predictions" class="panel">
+          <h3>예측 샘플 (테스트 세트)</h3>
+          <div class="table-wrap">
+            <table class="data-table" id="predTable">
+              <thead>
+                <tr><th>#</th><th>실제값</th><th>예측값</th><th>일치</th></tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </section>
+      </section>
+    </main>
+  </div>
+
+  <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+</body>
+</html>
