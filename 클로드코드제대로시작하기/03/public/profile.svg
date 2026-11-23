@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" width="160" height="160">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10b981" />
+      <stop offset="100%" stop-color="#06b6d4" />
+    </linearGradient>
+    <linearGradient id="avatarGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fed7aa" />
+      <stop offset="100%" stop-color="#fdba74" />
+    </linearGradient>
+  </defs>
+  
+  <!-- 배경 원형 -->
+  <circle cx="80" cy="80" r="78" fill="url(#bgGrad)" stroke="#ffffff" stroke-width="4"/>
+  
+  <!-- 캐릭터 일러스트 (김클로 바이브코더) -->
+  <g id="character">
+    <!-- 몸체 / 옷 -->
+    <path d="M 40 148 C 40 118, 60 112, 80 112 C 100 112, 120 118, 120 148 Z" fill="#1e293b" />
+    <!-- 깃 / 셔츠 칼라 -->
+    <polygon points="80,115 72,126 88,126" fill="#ffffff" />
+    
+    <!-- 얼굴 -->
+    <circle cx="80" cy="74" r="32" fill="url(#avatarGrad)" />
+    
+    <!-- 헤어스타일 -->
+    <path d="M 50 68 C 50 42, 64 36, 80 36 C 96 36, 110 42, 110 68 C 102 58, 96 56, 80 56 C 64 56, 58 58, 50 68 Z" fill="#0f172a" />
+    
+    <!-- 눈 -->
+    <circle cx="70" cy="72" r="3" fill="#0f172a" />
+    <circle cx="90" cy="72" r="3" fill="#0f172a" />
+    
+    <!-- 미소 -->
+    <path d="M 74 82 Q 80 88 86 82" stroke="#0f172a" stroke-width="2.5" stroke-linecap="round" fill="none" />
+    
+    <!-- 볼터치 -->
+    <circle cx="64" cy="78" r="4" fill="#f43f5e" opacity="0.4" />
+    <circle cx="96" cy="78" r="4" fill="#f43f5e" opacity="0.4" />
+    
+    <!-- 코딩 안경 -->
+    <rect x="62" y="66" width="16" height="12" rx="3" fill="none" stroke="#0284c7" stroke-width="2" />
+    <rect x="82" y="66" width="16" height="12" rx="3" fill="none" stroke="#0284c7" stroke-width="2" />
+    <line x1="78" y1="72" x2="82" y2="72" stroke="#0284c7" stroke-width="2" />
+  </g>
+</svg>
